@@ -1,1 +1,11 @@
 ID,user_ID,asset_ID,assignedAt,returnedAt,remarks,createdAt,createdBy,modifiedAt,modifiedBy
+1,6,1,2024-01-15 14:00:00,,New employee onboarding,2024-01-15 14:30:00,2,2024-01-15 14:30:00,2
+2,7,2,2024-01-20 10:00:00,,Sales department equipment,2024-01-20 10:30:00,2,2024-01-20 10:30:00,2
+3,8,3,2024-01-22 09:30:00,,Finance analyst workstation,2024-01-22 10:00:00,2,2024-01-22 10:00:00,2
+4,6,5,2024-02-01 08:00:00,,Monitor for primary workspace,2024-02-01 08:30:00,1,2024-02-01 08:30:00,1
+5,9,6,2024-02-03 15:00:00,,Shared department printer,2024-02-03 15:30:00,2,2024-02-03 15:30:00,2
+6,2,7,2024-02-05 11:00:00,,Network operations monitoring,2024-02-05 11:30:00,1,2024-02-05 11:30:00,1
+7,3,8,2024-02-10 13:00:00,,Primary server management,2024-02-10 13:30:00,1,2024-02-10 13:30:00,1
+8,7,9,2024-02-12 12:00:00,,Executive tablet,2024-02-12 12:30:00,2,2024-02-12 12:30:00,2
+9,8,4,2024-02-15 09:00:00,2024-02-25 17:00:00,Temporary assignment for project,2024-02-15 09:30:00,2,2024-02-25 17:30:00,2
+10,6,4,2024-02-26 10:00:00,,Permanent assignment after project,2024-02-26 10:30:00,2,2024-02-26 10:30:00,2

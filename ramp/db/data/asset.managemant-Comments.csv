@@ -1,1 +1,12 @@
 ID,request_ID,author_ID,content,createdAt,createdBy,modifiedAt,modifiedBy
+ID,request_ID,author_ID,content,createdAt,createdBy,modifiedAt,modifiedBy
+1,1,2,Initial setup completed. Laptop deployed and tested.,2024-01-15 14:00:00,2,2024-01-15 14:00:00,2
+2,1,6,Equipment received and working fine. Thank you!,2024-01-15 15:30:00,6,2024-01-15 15:30:00,6
+3,2,3,Investigating printer connectivity. Issue appears to be with network port.,2024-02-01 11:15:00,3,2024-02-01 11:15:00,3
+4,2,7,Printer still not working. Can you provide update?,2024-02-01 13:00:00,7,2024-02-01 13:00:00,7
+5,3,2,WiFi signal strength is weak in conference room B. Repositioning access point.,2024-02-02 15:30:00,2,2024-02-02 15:30:00,2
+6,4,4,Licenses ordered. Awaiting vendor confirmation.,2024-02-03 10:00:00,4,2024-02-03 10:00:00,4
+7,5,3,Monitors arriving tomorrow. Will schedule installation.,2024-02-05 16:00:00,3,2024-02-05 16:00:00,3
+8,6,2,Email archived successfully. All data preserved.,2024-02-06 09:00:00,2,2024-02-06 09:00:00,2
+9,8,3,Performance baseline testing in progress. Recommending upgraded processor.,2024-02-11 10:30:00,3,2024-02-11 10:30:00,3
+10,10,2,Network permissions restored. User can now access shared drives.,2024-02-14 16:15:00,2,2024-02-14 16:15:00,2

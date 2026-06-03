@@ -1,1 +1,11 @@
 ID,employeeId,firstName,lastName,email,role,department_ID,createdAt,createdBy,modifiedAt,modifiedBy
+1,EMP001,John,Smith,john.smith@company.com,1,1,2024-01-01 08:30:00,1,2024-01-01 08:30:00,1
+2,EMP002,Sarah,Johnson,sarah.johnson@company.com,3,1,2024-01-01 08:30:00,1,2024-01-01 08:30:00,1
+3,EMP003,Michael,Brown,michael.brown@company.com,3,1,2024-01-01 08:30:00,1,2024-01-01 08:30:00,1
+4,EMP004,Emily,Davis,emily.davis@company.com,2,2,2024-01-01 08:30:00,1,2024-01-01 08:30:00,1
+5,EMP005,Robert,Wilson,robert.wilson@company.com,2,3,2024-01-01 08:30:00,1,2024-01-01 08:30:00,1
+6,EMP006,Jennifer,Lee,jennifer.lee@company.com,4,4,2024-01-01 08:30:00,1,2024-01-01 08:30:00,1
+7,EMP007,David,Martinez,david.martinez@company.com,4,5,2024-01-01 08:30:00,1,2024-01-01 08:30:00,1
+8,EMP008,Lisa,Anderson,lisa.anderson@company.com,4,1,2024-01-01 08:30:00,1,2024-01-01 08:30:00,1
+9,EMP009,James,Taylor,james.taylor@company.com,3,1,2024-01-01 08:30:00,1,2024-01-01 08:30:00,1
+10,EMP010,Maria,Garcia,maria.garcia@company.com,5,1,2024-01-01 08:30:00,1,2024-01-01 08:30:00,1

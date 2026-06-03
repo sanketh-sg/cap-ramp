@@ -1,1 +1,6 @@
 ID,name,description
+1,Admin,System administrator with full access
+2,Manager,Department manager who can approve requests
+3,Agent,IT support agent who handles requests
+4,User,Regular employee who can submit requests
+5,Viewer,Read-only access for auditing
