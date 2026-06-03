@@ -2,7 +2,8 @@
   "name": "ramp",
   "version": "1.0.0",
   "dependencies": {
-    "@sap/cds": "^9"
+    "@sap/cds": "^9",
+    "sqlite3": "^6.0.1"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2.4"
@@ -10,5 +11,12 @@
   "scripts": {
     "start": "cds-serve"
   },
-  "private": true
+  "private": true,
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite"
+      }
+    }
+  }
 }
