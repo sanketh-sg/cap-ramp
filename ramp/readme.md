@@ -77,17 +77,21 @@ So:
 Deleting a ServiceRequest deletes Comments
 Attachments cannot exist independently
 
-Use ASSOCIATION for:
-Users ↔ Department
-Request ↔ User
-Asset ↔ Category
-Asset ↔ Vendor
+Associations (Most of the system)
+Users ↔ Departments
+Users ↔ Assets (via assignments)
+Requests ↔ Users
+Assets ↔ Vendors
+Assets ↔ Categories
+Rule:
+Independent lifecycle + reusable reference
 
-Use COMPOSITION for:
+Compositions (Strict ownership)
 Request → Comments
 Request → Attachments
 Request → AuditLogs
-Asset → Assignment history (optional depending design)
+Rule:
+Child cannot exist without parent
 
 
 6. Domain-driven Design (DDD Structure)
@@ -99,3 +103,23 @@ Identity (Users, Departments)
 Assets (Assets, Vendors, Categories)
 Service Management (Requests, Comments, Attachments)
 Audit (AuditLogs)
+
+Departments
+   └── Users
+
+Users
+   ├── ServiceRequests (requester)
+   ├── ServiceRequests (assignedAgent)
+   └── AssetAssignments
+
+Assets
+   ├── Category
+   ├── Vendor
+   └── AssetAssignments
+
+ServiceRequests
+   ├── Comments (composition)
+   ├── Attachments (composition)
+   └── AuditLogs (composition)
+
+   

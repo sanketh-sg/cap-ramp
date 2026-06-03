@@ -8,9 +8,8 @@ using {
 entity Departments : cuid, managed {
     name : String(100);
     description : String(255);
-
-    users : Composition of many Users
-                on users.department = $self;
+    users       : Association to many Users
+                    on users.department = $self;
 }
 
 entity Users : cuid, managed {
@@ -20,10 +19,13 @@ entity Users : cuid, managed {
     email : String(255);
     role : UserRoles;
 
-    department : Association to Departments;
+    department  : Association to Departments;
 
     requests : Association to many ServiceRequests
                 on requests.requester = $self;
+
+    assignedRequests : Association to many ServiceRequests
+                        on assignedRequests.assignedAgent = $self;
 
     assignments : Association to many AssetAssignments
                     on assignments.user = $self;
