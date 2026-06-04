@@ -122,4 +122,37 @@ ServiceRequests
    ├── Attachments (composition)
    └── AuditLogs (composition)
 
-   
+Why Projections?
+
+You might ask:
+
+Why not expose the entities directly?
+
+Because projections create a separation between:
+
+Database Model
+        ↓
+Service/API Model
+
+Later you can:
+
+Hide fields
+Rename fields
+Add annotations
+Create multiple services
+
+without changing the database schema.
+
+1. First: what can be selective projection?
+
+In CAP, ANY projection can be made selective as long as:
+
+It is not used internally as a full persistence model
+You want to control API exposure
+You want to hide fields or rename fields
+
+So technically:
+
+✅ All of your entities can be selective projections
+
+BUT… you should NOT do it everywhere blindly.

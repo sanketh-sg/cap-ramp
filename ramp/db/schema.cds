@@ -1,4 +1,4 @@
-namespace asset.managemant;
+namespace asset_management;
 
 using {
     cuid,
@@ -6,18 +6,17 @@ using {
 } from '@sap/cds/common';
 
 entity Departments : cuid, managed {
-    name : String(100);
+    name : String(100) not null;
     description : String(255);
     users       : Association to many Users
                     on users.department = $self;
-}
-
-entity Users : cuid, managed {
+}entity Users : cuid, managed {
     employeeId : String(50);
-    firstName : String(100);
-    lastName : String(100);
-    email : String(255);
-    role : UserRoles;
+    firstName : String(100) not null;
+    lastName : String(100) not null;
+    virtual fullName : String; //computed in service logic not stored in DB
+    email : String(255) not null;
+    role : UserRoles default 'EMPLOYEE';
 
     department  : Association to Departments;
 
@@ -32,18 +31,15 @@ entity Users : cuid, managed {
                 
 }
 
-entity Vendors : cuid, managed {
-    name : String(100);
-    email : String(255);
-    phone : String(20);
-
+entity Vendors : cuid, managed, ContactInfo {
+    name : String(100) not null;
     assets : Association to many Assets
                 on assets.vendor = $self;
 }
 
 entity AssetCategories : cuid, managed {
 
-    name        : String(100);
+    name        : String(100) not null;
     description : String(255);
 
     assets       : Association to many Assets
@@ -52,10 +48,10 @@ entity AssetCategories : cuid, managed {
 
 entity Assets : cuid, managed {
 
-    assetTag       : String(50);
-    serialNumber   : String(100);
-    name           : String(255);
-    status         : AssetStatus;
+    assetTag       : String(50) not null;
+    serialNumber   : String(100) not null;
+    name           : String(255) not null;
+    status         : AssetStatus default 'AVAILABLE';
     purchaseDate   : Date;
 
     category       : Association to AssetCategories;
@@ -65,6 +61,7 @@ entity Assets : cuid, managed {
     assignments    : Composition of many AssetAssignments
                         on assignments.asset = $self;
 }
+
 
 entity AssetAssignments : cuid, managed {
 
@@ -79,9 +76,11 @@ entity AssetAssignments : cuid, managed {
 
 entity ServiceRequests : cuid, managed {
 
+    @mandatory
     title          : String(255);
+
     description    : LargeString;
-    status         : TicketStatus;
+    status         : TicketStatus default 'NEW';
     priority       : Priority;
 
     requester      : Association to Users;
@@ -166,4 +165,9 @@ type AssetStatus : String enum {
     ASSIGNED;
     IN_MAINTENANCE;
     RETIRED;
+}
+
+aspect ContactInfo {
+    email : String(255) not null;
+    phone : String(50) not null;
 }
