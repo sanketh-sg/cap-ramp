@@ -1,1 +1,17 @@
-{"folders":[{"path":"ramp"}],"settings":{}}
+{
+    "folders": [
+        {
+            "path": "ramp"
+        }
+    ],
+    "settings": {
+        "sqltools.connections": [
+            {
+                "previewLimit": 50,
+                "driver": "SQLite",
+                "name": "sqlite",
+                "database": "${workspaceFolder:ramp}/db.sqlite"
+            }
+        ]
+    }
+}

@@ -1,5 +1,4 @@
 ID,request_ID,author_ID,content,createdAt,createdBy,modifiedAt,modifiedBy
-ID,request_ID,author_ID,content,createdAt,createdBy,modifiedAt,modifiedBy
 1,1,2,Initial setup completed. Laptop deployed and tested.,2024-01-15 14:00:00,2,2024-01-15 14:00:00,2
 2,1,6,Equipment received and working fine. Thank you!,2024-01-15 15:30:00,6,2024-01-15 15:30:00,6
 3,2,3,Investigating printer connectivity. Issue appears to be with network port.,2024-02-01 11:15:00,3,2024-02-01 11:15:00,3
