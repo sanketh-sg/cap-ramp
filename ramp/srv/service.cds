@@ -48,6 +48,8 @@ service AssetService {
         remarks
     };
     
+    action assignAssetToUser(assetID: UUID, userID: UUID);
+
 }
 
 @restrict: [
