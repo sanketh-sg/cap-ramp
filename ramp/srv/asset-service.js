@@ -9,19 +9,9 @@ class AssetsService extends cds.ApplicationService {
 
         this.before('CREATE', 'Assets', async (req) => {
         //todo: implement logic to handle asset creation, e.g., validating input data or setting default values
-            const { assetTag } = req.data;
-
-            const existingAsset = await cds.run(SELECT.one.from('asset_management.Assets').where({ assetTag: assetTag }));
+            const existingAsset = await cds.run(SELECT.one.from('asset_management.Assets').where({ assetTag: req.data.assetTag }));
             if (existingAsset) {
                 return req.error(400, "Asset with the same assetTag already exists"); // Asset with the same assetTag already exists
-            }
-        });
-
-        this.after('UPDATE', 'Assets', async (req) => {
-        //todo: implement logic to handle asset updates, e.g., logging changes or validating updates
-            const asset = await cds.run(SELECT.one.from('asset_management.Assets').where({ ID: req.data.ID }));
-            if (!asset) {
-                return req.error(404, "Asset not found"); // Asset not found
             }
         });
 
