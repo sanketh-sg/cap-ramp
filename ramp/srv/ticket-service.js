@@ -151,7 +151,7 @@ class TicketService extends cds.ApplicationService {
         const { ticketID } = req.data;
 
         if (!ticketID) {
-            req.error(400, 'ticketID is required');
+            return req.error(400, 'ticketID is required');
         }
 
         const db = await cds.connect.to('db');
@@ -202,7 +202,7 @@ class TicketService extends cds.ApplicationService {
 
         const db = await cds.connect.to('db')
 
-        const ticket = db.run(
+        const ticket = await db.run(
             SELECT.one.from('asset_management.ServiceRequests').where({ ID: ticketID })
         );
 
@@ -216,7 +216,7 @@ class TicketService extends cds.ApplicationService {
         const storagePath = `/attachments/${ticketID}/${attachmentID}/${filename}`;
 
         await db.run(
-            UPDATE('asset_management.Attachments').entries({
+            INSERT.into('asset_management.Attachments').entries({
                 ID: attachmentId,
                 request_ID: ticketID,
                 fileName: filename,
@@ -235,6 +235,52 @@ class TicketService extends cds.ApplicationService {
             attachmentID: attachmentId,
             ticketID: ticketID,
             filename: filename
+        };
+    }
+
+        async addComment(req) {
+        const { ticketID, content } = req.data;
+
+        // Validate required fields
+        if (!ticketID) {
+            return req.error(400, 'ticketID is required');
+        }
+
+        if (!content?.trim()) {
+            return req.error(400, 'Comment content is required');
+        }
+
+        const db = await cds.connect.to('db');
+
+        // Validate ticket exists
+        const ticket = await db.run(
+            SELECT.one.from('asset_management.ServiceRequests').where({ ID: ticketID })
+        );
+
+        if (!ticket) {
+            return req.error(404, 'ServiceRequest not found');
+        }
+
+        // Create comment
+        const commentId = cds.utils.uuid();
+        await db.run(
+            INSERT.into('asset_management.Comments').entries({
+                ID: commentId,
+                request_ID: ticketID,
+                author_ID: req.user.id,
+                content: content,
+                createdAt: new Date(),
+                createdBy: req.user.id,
+                modifiedAt: new Date(),
+                modifiedBy: req.user.id
+            })
+        );
+
+        return {
+            message: 'Comment added successfully',
+            success: true,
+            commentID: commentId,
+            ticketID: ticketID
         };
     }
 

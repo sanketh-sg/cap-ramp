@@ -3,6 +3,17 @@ target/
 _out/
 gen/
 
+db.sqlite*
+*.log
+logs/
+dist/
+.env
+.env.local
+.env.*.local
+.DS_Store
+.vscode/
+.idea/
+
 .cdsrc-private.json
 default-*.json
 *.sqlite

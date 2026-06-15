@@ -27,10 +27,10 @@ class AssetsService extends cds.ApplicationService {
         this.on('assignAssetToUser', this.assignAssetToUser);
         this.on('returnAsset', this.returnAsset);
 
-        // Audit logging for all CREATE/UPDATE/DELETE operations
-        this.after('CREATE', 'Assets', this.logAssetAudit);
-        this.after('UPDATE', 'Assets', this.logAssetAudit);
-        this.after('DELETE', 'Assets', this.logAssetAudit);
+        //Audit logging for all CREATE/UPDATE/DELETE operations
+        this.after('CREATE', 'Assets', this.logAudit);
+        this.after('UPDATE', 'Assets', this.logAudit);
+        this.after('DELETE', 'Assets', this.logAudit);
 
         return super.init();
     }
@@ -58,7 +58,7 @@ class AssetsService extends cds.ApplicationService {
 
 
         const existingAssignment = await db.run(
-            SELECT.one.from('asset_management.AssetAssignments').where({ assetID: assetID, returnedAt: null }));
+            SELECT.one.from('asset_management.AssetAssignments').where({ asset_ID: assetID, returnedAt: null }));
         if (existingAssignment) {
             return req.error(400, "Asset is already assigned to another user"); // Asset is already assigned
         }
@@ -132,6 +132,40 @@ class AssetsService extends cds.ApplicationService {
             success: true,
             assignmentID: assignmentID
         };
+    }
+
+    async logAudit(req, key, agg) {
+            try {
+                if (req.error) return;
+                
+                const db = await cds.connect.to('db')
+                const entity = req.subject;
+                const action = req.event;
+                const user = req.user;
+    
+                if (entity !== 'ServiceRequests') return;
+    
+                const ticketID = req.data.ID || key;
+    
+                let oldValue = JSON.stringify(req._result_before || {});
+                let newValue = JSON.stringify(req.data || {});
+                
+                await db.run(
+                    INSERT.into('asset_management.AuditLogs').entries({
+                        ID: cds.utils.uuid(),
+                        request_ID: ticketID,
+                        action: action.toUpperCase(),
+                        oldValue: oldValue,
+                        newValue: newValue,
+                        changedBy: user.id || 'SYSTEM',
+                        changedAt: new Date()
+                    })
+                );
+            } catch (error) {
+                // Log errors but don't fail the main operation
+                console.error('Audit logging error:', error);
+            }
+            
     }
 
 };
