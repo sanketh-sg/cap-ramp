@@ -3,12 +3,16 @@ using asset_management from '../db/schema';
 
 @restrict: [
     {
-        grant: 'WRITE',
-        where: 'role = "ASSET_MANAGER"'
+        grant: ['CREATE', 'UPDATE', 'DELETE'],
+        to: 'AssetManager'
+    },
+    {
+        grant: ['CREATE', 'UPDATE'],
+        to: 'Admin'
     },
     {
         grant: 'READ',
-        where: 'role = "EMPLOYEE"'
+        to: ['Employee', 'SupportAgent', 'AssetManager', 'Admin']
     }
 ]
 service AssetService {
@@ -38,9 +42,18 @@ service AssetService {
             remarks
         };
 
-    action assignAssetToUser(assetID: UUID,
-                             userID: UUID) returns String;
+    action assignAssetToUser(assetID: UUID, userID: UUID) returns {
+        message: String;
+        success: Boolean;
+        assignmentID: UUID;
+        assetID: UUID;
+        userID: UUID;
+    };
 
-    action returnAsset(assignmentID: UUID) returns String;
+    action returnAsset(assignmentID: UUID) returns {
+        message: String;
+        success: Boolean;
+        assignmentID: UUID;
+    };
 
 }
