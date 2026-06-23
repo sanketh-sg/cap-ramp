@@ -3,11 +3,11 @@ using {asset_management} from '../db/schema';
 @restrict: [
     {
         grant: '*',
-        where: 'role = "ADMIN"'
+        where: 'ADMIN'
     },
     {
         grant: 'READ',
-        where: 'role = "EMPLOYEE"'
+        to: ['Employee', 'SupportAgent', 'AssetManager']
     }
 ]
 service IdentityService {

@@ -5,7 +5,9 @@
     "@sap/cds": "^9.9.1",
     "chai": "^6.2.2",
     "chai-http": "^5.1.2",
-    "mocha": "^11.7.6"
+    "mocha": "^11.7.6",
+    "@cap-js/sqlite": "^2.4.0",
+    "@sap/xssec": "^4"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2.4.0"
@@ -23,6 +25,9 @@
             "url": "db.sqlite"
           }
         }
+      },
+      "[production]": {
+        "auth": "xsuaa"
       }
     }
   }

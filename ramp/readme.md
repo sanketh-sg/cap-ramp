@@ -156,3 +156,10 @@ So technically:
 ✅ All of your entities can be selective projections
 
 BUT… you should NOT do it everywhere blindly.
+
+xs-security.json
+
+Scopes: Fine-grained permissions (e.g., "create tickets", "assign assets")
+Role-templates: Group scopes into roles (e.g., EMPLOYEE, SUPPORT_AGENT)
+Attributes: User attributes for dynamic authorization
+These map to your CDS @restrict annotations

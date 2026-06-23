@@ -24,8 +24,8 @@ class AssetsService extends cds.ApplicationService {
         });
 
 
-        this.on('assignAssetToUser', this.assignAssetToUser);
-        this.on('returnAsset', this.returnAsset);
+        // this.on('assignAssetToUser', this.assignAssetToUser);
+        // this.on('returnAsset', this.returnAsset);
 
         //Audit logging for all CREATE/UPDATE/DELETE operations
         this.after('CREATE', 'Assets', this.logAudit);
@@ -143,7 +143,7 @@ class AssetsService extends cds.ApplicationService {
                 const action = req.event;
                 const user = req.user;
     
-                if (entity !== 'ServiceRequests') return;
+                if (entity !== 'Assets') return;
     
                 const ticketID = req.data.ID || key;
     

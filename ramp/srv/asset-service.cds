@@ -7,7 +7,7 @@ using asset_management from '../db/schema';
         to: 'AssetManager'
     },
     {
-        grant: ['CREATE', 'UPDATE'],
+        grant: ['CREATE', 'UPDATE', 'DELETE'],
         to: 'Admin'
     },
     {
@@ -15,7 +15,7 @@ using asset_management from '../db/schema';
         to: ['Employee', 'SupportAgent', 'AssetManager', 'Admin']
     }
 ]
-service AssetService {
+service AssetsService {
 
     entity Assets           as
         projection on asset_management.Assets {

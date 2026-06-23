@@ -2,7 +2,7 @@ const cds = require('@sap/cds');
 const { INSERT, SELECT, UPDATE } = require('@sap/cds/lib/ql/cds-ql');
 
 
-class TicketService extends cds.ApplicationService {
+class TicketingService extends cds.ApplicationService {
     async init() {
         this.before('CREATE', 'ServiceRequests', this.validateCreateRequest);
 
@@ -48,6 +48,10 @@ class TicketService extends cds.ApplicationService {
 
     async assignTicket(req) {
         const { ticketID, agentID } = req.data;
+
+        if (!req.user.roles.includes('SupportAgent') && !req.user.roles.includes('Admin')) {
+            return req.error(403, 'Only SupportAgent or Admin can assign tickets');
+        }
 
         if(!ticketID || !agentID) {
             return req.error(400, 'Missing required fields: ticketID and agentID');
@@ -96,6 +100,10 @@ class TicketService extends cds.ApplicationService {
     }
 
     async resolveTicket(req) {
+        if (!req.user.roles.includes('SupportAgent') && !req.user.roles.includes('Admin')) {
+            return req.error(403, 'Only SupportAgent or Admin can resolve tickets');
+        }
+
         const { ticketID, resolutionDetails } = req.data;
 
         if (!ticketID) {
@@ -148,6 +156,9 @@ class TicketService extends cds.ApplicationService {
     }
     
     async closeTicket(req) {
+        if (!req.user.roles.includes('SupportAgent') && !req.user.roles.includes('Admin')) {
+            return req.error(403, 'Only SupportAgent or Admin can close tickets');
+        }
         const { ticketID } = req.data;
 
         if (!ticketID) {
@@ -238,7 +249,7 @@ class TicketService extends cds.ApplicationService {
         };
     }
 
-        async addComment(req) {
+    async addComment(req) {
         const { ticketID, content } = req.data;
 
         // Validate required fields

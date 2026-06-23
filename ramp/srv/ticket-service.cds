@@ -13,7 +13,7 @@ using {asset_management} from '../db/schema';
     },
     {
         grant: ['UPDATE'],
-        to: 'SupportAgent'  // Only support agents can update (resolve, assign)
+        to: ['SupportAgent', 'Admin']  // Only support agents and admin can update (resolve, assign)
     },
     {
         grant: '*',

@@ -1,0 +1,98 @@
+
+
+{
+  "scopes": [
+        {
+      "name": "$XSAPPNAME.employee",
+      "description": "Employee - Create and view their own tickets"
+    },
+    {
+      "name": "$XSAPPNAME.support_agent",
+      "description": "Support Agent - Manage tickets, assign, resolve, close"
+    },
+    {
+      "name": "$XSAPPNAME.asset_manager",
+      "description": "Asset Manager - Create, assign, track assets"
+    },
+    {
+      "name": "$XSAPPNAME.admin",
+      "description": "Administrator - Full access to all resources and audit logs"
+    },
+    {
+      "name": "$XSAPPNAME.ticket.create",
+      "description": "Permission to create tickets"
+    },
+    {
+      "name": "$XSAPPNAME.ticket.assign",
+      "description": "Permission to assign tickets"
+    },
+    {
+      "name": "$XSAPPNAME.ticket.resolve",
+      "description": "Permission to resolve tickets"
+    },
+    {
+      "name": "$XSAPPNAME.asset.assign",
+      "description": "Permission to assign assets"
+    },
+    {
+      "name": "$XSAPPNAME.asset.return",
+      "description": "Permission to return assets"
+    },
+    {
+      "name": "$XSAPPNAME.audit.read",
+      "description": "Permission to view audit logs"
+    }
+  ],
+  "attributes": [
+        {
+      "name": "department",
+      "description": "User's department",
+      "valueType": "string"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Employee",
+      "description": "Standard employee - can create tickets and view assets",
+      "scope-references": [
+        "$XSAPPNAME.employee",
+        "$XSAPPNAME.ticket.create"
+      ]
+    },
+    {
+      "name": "SupportAgent",
+      "description": "Support team member - manage ticket lifecycle",
+      "scope-references": [
+        "$XSAPPNAME.support_agent",
+        "$XSAPPNAME.ticket.assign",
+        "$XSAPPNAME.ticket.resolve"
+      ]
+    },
+    {
+      "name": "AssetManager",
+      "description": "Asset management team - manage all asset operations",
+      "scope-references": [
+        "$XSAPPNAME.asset_manager",
+        "$XSAPPNAME.asset.assign",
+        "$XSAPPNAME.asset.return"
+      ]
+    },
+    {
+      "name": "Admin",
+      "description": "Administrator - full system access",
+      "scope-references": [
+        "$XSAPPNAME.admin",
+        "$XSAPPNAME.employee",
+        "$XSAPPNAME.support_agent",
+        "$XSAPPNAME.asset_manager",
+        "$XSAPPNAME.ticket.create",
+        "$XSAPPNAME.ticket.assign",
+        "$XSAPPNAME.ticket.resolve",
+        "$XSAPPNAME.asset.assign",
+        "$XSAPPNAME.asset.return",
+        "$XSAPPNAME.audit.read"
+      ]
+    }
+  ],
+  "authorities-inheritance": false
+}

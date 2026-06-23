@@ -2,7 +2,7 @@ using {asset_management} from '../db/schema';
 
 @restrict: [{
     grant: '*',
-    where: 'role = "ADMIN"'
+    where: 'ADMIN'
 }]
 service AuditLogsService {
 
